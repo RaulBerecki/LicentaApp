@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotsController : MonoBehaviour
 {
     public GameObject[] grippers;
+    public GameObject riser;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +43,15 @@ public class RobotsController : MonoBehaviour
             else
                 grippers[i].SetActive(false);
         }
+    }
+    public void RiserOn()
+    {
+        riser.SetActive(true);
+        transform.position = new Vector3(transform.position.x,transform.position.y+0.55f,transform.position.z);
+    }
+    public void RiserOff()
+    {
+        riser.SetActive(false);
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.55f, transform.position.z);
     }
 }

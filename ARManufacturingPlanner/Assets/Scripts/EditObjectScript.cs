@@ -67,37 +67,37 @@ public class EditObjectScript : MonoBehaviour
     public void IncreasePosX()
     {
         float currentValue = float.Parse(changePositionInputs[0].text);
-        currentValue += 1;
+        currentValue += .1f;
         changePositionInputs[0].text = currentValue.ToString();
     }
     public void DecreasePosX()
     {
         float currentValue = float.Parse(changePositionInputs[0].text);
-        currentValue -= 1;
+        currentValue -= .1f;
         changePositionInputs[0].text = currentValue.ToString();
     }
     public void IncreasePosY()
     {
         float currentValue = float.Parse(changePositionInputs[1].text);
-        currentValue += 1;
+        currentValue += .1f;
         changePositionInputs[1].text = currentValue.ToString();
     }
     public void DecreasePosY()
     {
         float currentValue = float.Parse(changePositionInputs[1].text);
-        currentValue -= 1;
+        currentValue -= .1f;
         changePositionInputs[1].text = currentValue.ToString();
     }
     public void IncreasePosZ()
     {
         float currentValue = float.Parse(changePositionInputs[2].text);
-        currentValue += 1;
+        currentValue += .1f;
         changePositionInputs[2].text = currentValue.ToString();
     }
     public void DecreasePosZ()
     {
         float currentValue = float.Parse(changePositionInputs[2].text);
-        currentValue -= 1;
+        currentValue -= .1f;
         changePositionInputs[2].text = currentValue.ToString();
     }
     public void IncreaseRotX()

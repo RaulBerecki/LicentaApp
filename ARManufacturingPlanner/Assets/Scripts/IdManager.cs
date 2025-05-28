@@ -61,7 +61,7 @@ public class IdManager : MonoBehaviour
             OpenObjectsPanel();
         }
         GameObject obj=Instantiate(instantiateButton, contentPanel.transform, true);
-        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(392 ,-50*gameObjects.Count);
+        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0 ,-50*gameObjects.Count);
         obj.GetComponent<MenuManager>().idManager = this.gameObject.GetComponent<IdManager>();
         obj.GetComponent<MenuManager>().id = gameObjects.Count;
         names.Add("Object"+objectsCreated);

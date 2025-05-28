@@ -9,14 +9,21 @@ public class ObjectMenuScript : MonoBehaviour
     public TextMeshProUGUI name;
     IdManager idManager;
     UserInterfaceManager userInterfaceManager;
-    public GameObject addGripperButton;
+    public GameObject addGripperButton,addRiserButton;
     // Start is called before the first frame update
     void Start()
     {
         idManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IdManager>();
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
         if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>())
+        {
+            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().riser.active)
+                addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER ON";
+            else
+                addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
             addGripperButton.SetActive(true);
+            addRiserButton.SetActive(true);
+        }   
     }
 
     // Update is called once per frame
@@ -55,5 +62,18 @@ public class ObjectMenuScript : MonoBehaviour
         userInterfaceManager.ShowGripperPanel();
         userInterfaceManager.BackgroundPanelActive = this.gameObject;
         userInterfaceManager.BackgroundPanelActive.SetActive(false);
+    }
+    public void RiserClick()
+    {
+        if(addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text=="RISER OFF")
+        {
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().RiserOn();
+            addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER ON";
+        }
+        else
+        {
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().RiserOff();
+            addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
+        }
     }
 }

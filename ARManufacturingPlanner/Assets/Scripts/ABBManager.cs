@@ -24,7 +24,7 @@ public class ABBManager : MonoBehaviour
     }
     public void BackButton()
     {
-        userInterfaceManager.BackButtonABBPanel();
+        userInterfaceManager.BackButtonRobotsPanel();
         Destroy(this.gameObject);
     }
     public void IRB1400()

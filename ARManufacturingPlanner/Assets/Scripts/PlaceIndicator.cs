@@ -26,23 +26,19 @@ public class PlaceIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var ray = new Vector2(Screen.width / 2, Screen.height / 2);
-        if (raycastManager.Raycast(ray, hits, TrackableType.Planes))
+        var ray = new Vector2(Screen.width / 2, Screen.height / 2); //punct imaginar
+        if (raycastManager.Raycast(ray, hits, TrackableType.Planes)) //verificare intersectie cu o suprafata
         {
             Pose hitPose = hits[0].pose;
             transform.position = hitPose.position;
             transform.rotation = hitPose.rotation;
-            if (!GameObject.FindGameObjectWithTag("StartPanel") && !isStarted)
+            if (!GameObject.FindGameObjectWithTag("StartPanel") && !isStarted) //verificare intersectie cu o suprafata pentru prima data
             {
+                //initializare interfata
                 GameObject child = Instantiate(startPanel, UIparent.transform);
                 child.transform.parent = UIparent.transform;
                 isStarted = true;
-                //debugText.text = child.GetComponent<RectTransform>().offsetMax.ToString()+" "+child.GetComponent<RectTransform>().offsetMin.ToString();
             }
-            /*if (!indicator.activeInHierarchy)
-            {
-                indicator.SetActive(true);
-            }*/
         }
     }
     public void SetObject(GameObject obj)

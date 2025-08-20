@@ -28,6 +28,6 @@ public class PlaceManager : MonoBehaviour
             idManager.OpenObjectsPanel();
         }
         idManager.gameObjects.Add(newPlacedObject);
-        idManager.CreateButton();
+        idManager.CreateElement();
     }
 }

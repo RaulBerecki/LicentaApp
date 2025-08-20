@@ -7,7 +7,7 @@ public class IdManager : MonoBehaviour
 {
     public List<GameObject> gameObjects;
     public List<string> names;
-    public GameObject objectsPanel, instantiateButton, contentPanel, contentObjects;
+    public GameObject objectsPanel, instantiateButton, contentPanel, contentObjects, minimizeButton;
     public bool isDeleted, isMinimized;
     public int idChanged, objectsCreated;
     public RectTransform contentContainer;
@@ -42,34 +42,36 @@ public class IdManager : MonoBehaviour
         if (!isMinimized)
         {
             contentObjects.SetActive(false);
-            objectsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 60);
-            objectsPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, -35);
+            objectsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(90, 90);
+            objectsPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(120, -60);
+            minimizeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-45, -45);
             isMinimized = true;
         }
         else
         {
             contentObjects.SetActive(true);
-            objectsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 400);
-            objectsPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, -200);
+            objectsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 500);
+            objectsPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, -250);
+            minimizeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50, -60);
             isMinimized = false;
         }
     }
-    public void CreateButton()
+    public void CreateElement()
     {
         objectsCreated++;
         if(gameObjects.Count ==1) {
             OpenObjectsPanel();
         }
         GameObject obj=Instantiate(instantiateButton, contentPanel.transform, true);
-        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0 ,-50*gameObjects.Count);
+        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0 ,-60*gameObjects.Count-55*(gameObjects.Count-1));
         obj.GetComponent<MenuManager>().idManager = this.gameObject.GetComponent<IdManager>();
         obj.GetComponent<MenuManager>().id = gameObjects.Count;
         names.Add("Object"+objectsCreated);
-        contentContainer.sizeDelta = new Vector2(0, 30+ gameObjects.Count * 50);
+        contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
     }
     void idChange()
     {
-        contentContainer.sizeDelta = new Vector2(0, 30 + gameObjects.Count * 50);
+        contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
         isDeleted = false;
     }
     public void EditObjectMenu(int idObject)

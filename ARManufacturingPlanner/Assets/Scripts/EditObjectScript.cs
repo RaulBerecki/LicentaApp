@@ -40,9 +40,13 @@ public class EditObjectScript : MonoBehaviour
     void Update()
     {
         if(changeRotationInputs.Length > 0)
-            idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles = new Vector3(float.Parse(changeRotationInputs[0].text), float.Parse(changeRotationInputs[1].text), float.Parse(changeRotationInputs[2].text));
+            idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles = new Vector3(float.Parse(changeRotationInputs[0].text),
+                float.Parse(changeRotationInputs[1].text),
+                float.Parse(changeRotationInputs[2].text));
         else if(changePositionInputs.Length >0)
-            idManager.gameObjects[idManager.idObjectToEdit].transform.position = new Vector3(float.Parse(changePositionInputs[0].text), float.Parse(changePositionInputs[1].text), float.Parse(changePositionInputs[2].text));
+            idManager.gameObjects[idManager.idObjectToEdit].transform.position = new Vector3(float.Parse(changePositionInputs[0].text), 
+                float.Parse(changePositionInputs[1].text),
+                float.Parse(changePositionInputs[2].text));
     }
     public void ChangeName()
     {

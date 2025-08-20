@@ -9,7 +9,7 @@ public class ObjectMenuScript : MonoBehaviour
     public TextMeshProUGUI name;
     IdManager idManager;
     UserInterfaceManager userInterfaceManager;
-    public GameObject addGripperButton,addRiserButton;
+    public GameObject addGripperButton,addRiserButton,addStopperButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,15 @@ public class ObjectMenuScript : MonoBehaviour
                 addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
             addGripperButton.SetActive(true);
             addRiserButton.SetActive(true);
-        }   
+        }
+        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>())
+        {
+            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>().stopper.active)
+                addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER ON";
+            else
+                addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER OFF";
+            addStopperButton.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -74,6 +82,19 @@ public class ObjectMenuScript : MonoBehaviour
         {
             idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().RiserOff();
             addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
+        }
+    }
+    public void StopperClick()
+    {
+        if (addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text == "STOPPER OFF")
+        {
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>().ActivateStopper();
+            addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER ON";
+        }
+        else
+        {
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>().DeactivateStopper();
+            addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER OFF";
         }
     }
 }

@@ -24,15 +24,13 @@ public class UserInterfaceManager : MonoBehaviour
     {
         
     }
+    //start planificare
     public void StartLayout()
     {
+        //creare meniu de navighare pentru creare obiect
         GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
         child.transform.parent = UIparent.transform;
         assetPanelButton.SetActive(false);
-    }
-    public void ActivatePlaceIndicator()
-    {
-
     }
     public void Robots()
     {

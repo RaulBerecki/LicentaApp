@@ -55,6 +55,7 @@ public class UniversalObjectPanelController : MonoBehaviour
     {
         SetUpForPlanning(6);
     }
+    //pregatire planificare obiect
     void SetUpForPlanning(int i)
     {
         placeManager.objectToPlace = objects[i];

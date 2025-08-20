@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
             if (!change)
             {
                 id--;
-                this.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(392, -50 * id);
+                this.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -60 * id - 55 * (id - 1));
                 change = true;
             }
         }

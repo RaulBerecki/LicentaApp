@@ -19,6 +19,6 @@ public class StartMenu : MonoBehaviour
     public void StartLayout()
     {
         userInterfaceManager.StartLayout();
-        Destroy(this.gameObject);
+        Destroy(this.gameObject); //sterge panou initial
     }
 }

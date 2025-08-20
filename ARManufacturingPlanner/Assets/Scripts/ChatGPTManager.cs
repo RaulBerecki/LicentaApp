@@ -12,7 +12,7 @@ public class ChatGPTManager : MonoBehaviour
     string supabaseUrl = "https://ftfanfreufswyjzubhdc.supabase.co/rest/v1/generateObject";
     string supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0ZmFuZnJldWZzd3lqenViaGRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5NTI2MjAsImV4cCI6MjA2NDUyODYyMH0.8_YWBEAI37j0Gssu6ieT76lkq4Z3d5qgMC0A4bc4j78";
 
-    private OpenAIApi openAI = new OpenAIApi("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", "org-TqeDfYuY2EHCyCmr40fu6E5z");
+    private OpenAIApi openAI = new OpenAIApi();
 
     private List<ChatMessage> messages = new List<ChatMessage>();
 

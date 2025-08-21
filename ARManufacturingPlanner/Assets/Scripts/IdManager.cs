@@ -7,7 +7,7 @@ public class IdManager : MonoBehaviour
 {
     public List<GameObject> gameObjects;
     public List<string> names;
-    public GameObject objectsPanel, instantiateButton, contentPanel, contentObjects, minimizeButton;
+    public GameObject objectsPanel, instantiateButton, contentPanel, contentObjects, minimizeButton, objectSpawner;
     public bool isDeleted, isMinimized;
     public int idChanged, objectsCreated;
     public RectTransform contentContainer;

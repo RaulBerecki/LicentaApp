@@ -28,6 +28,7 @@ public class PlaceManager : MonoBehaviour
             idManager.OpenObjectsPanel();
         }
         idManager.gameObjects.Add(newPlacedObject);
+        newPlacedObject.GetComponent<Transform>().parent = idManager.objectSpawner.GetComponent<Transform>();
         idManager.CreateElement();
     }
 }

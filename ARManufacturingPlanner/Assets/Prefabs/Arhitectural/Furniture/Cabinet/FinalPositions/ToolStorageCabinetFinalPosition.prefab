@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: -8730764723529518562}
   - component: {fileID: -6180163578209310950}
   - component: {fileID: 4046666549470610961}
+  - component: {fileID: -6605792014434974985}
   m_Layer: 0
   m_Name: ToolStorageCabinetFinalPosition
   m_TagString: Untagged
@@ -295,3 +296,20 @@ MonoBehaviour:
   m_Elasticity: 0.15
   m_EnableElasticBreakLimit: 0
   m_ElasticBreakLimit: 0.5
+--- !u!114 &-6605792014434974985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779915211982272205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 23
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 0}

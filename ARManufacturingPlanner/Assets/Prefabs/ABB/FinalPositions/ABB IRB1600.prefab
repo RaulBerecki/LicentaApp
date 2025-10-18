@@ -42,10 +42,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4765769495648847026}
-  - component: {fileID: -4627283331818479494}
   - component: {fileID: 5745055333931095883}
   - component: {fileID: -6403484218273906311}
   - component: {fileID: -6955641232108559524}
+  - component: {fileID: 2014709149339949669}
   m_Layer: 0
   m_Name: ABB IRB1600
   m_TagString: Untagged
@@ -71,22 +71,6 @@ Transform:
   - {fileID: 6541788992414996270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4627283331818479494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8625919290513233265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747175e33fef50b4bb93067a2ee7017a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grippers:
-  - {fileID: 7723633248901044964}
-  - {fileID: 6644474836923164737}
-  riser: {fileID: 5873479795844877716}
 --- !u!54 &5745055333931095883
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -259,6 +243,25 @@ MonoBehaviour:
   m_Elasticity: 0.15
   m_EnableElasticBreakLimit: 0
   m_ElasticBreakLimit: 0.5
+--- !u!114 &2014709149339949669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625919290513233265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 11
+  name: 
+  grippers:
+  - {fileID: 7723633248901044964}
+  - {fileID: 6644474836923164737}
+  riser: {fileID: 5873479795844877716}
+  stopper: {fileID: 0}
 --- !u!1001 &1463373175137351669
 PrefabInstance:
   m_ObjectHideFlags: 0

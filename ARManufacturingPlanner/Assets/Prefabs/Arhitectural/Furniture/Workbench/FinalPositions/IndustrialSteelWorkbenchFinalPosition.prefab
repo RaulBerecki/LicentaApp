@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5237058282959851122}
   - component: {fileID: 6839016496671294483}
   - component: {fileID: -8685761922046994676}
+  - component: {fileID: -2175426330702713296}
   m_Layer: 0
   m_Name: IndustrialSteelWorkbenchFinalPosition
   m_TagString: Untagged
@@ -207,6 +208,23 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &-2175426330702713296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776393474133195544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 32
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 0}
 --- !u!1 &6105735017127782162
 GameObject:
   m_ObjectHideFlags: 0

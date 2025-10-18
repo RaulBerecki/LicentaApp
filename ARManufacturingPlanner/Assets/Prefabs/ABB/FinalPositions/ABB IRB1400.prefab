@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3238088411125411320}
-  - component: {fileID: -1913979738961843986}
+  - component: {fileID: 3361677158326755089}
   - component: {fileID: 7831305231173241087}
   - component: {fileID: -8801453799688019195}
   - component: {fileID: -3703680497925551327}
@@ -38,7 +38,7 @@ Transform:
   - {fileID: 7899664756502053370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1913979738961843986
+--- !u!114 &3361677158326755089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,13 +47,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5650900228772187232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747175e33fef50b4bb93067a2ee7017a, type: 3}
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 10
+  name: 
   grippers:
   - {fileID: 5742940083990211304}
   - {fileID: 8670552142259915459}
   riser: {fileID: 7416003144570248000}
+  stopper: {fileID: 0}
 --- !u!54 &7831305231173241087
 Rigidbody:
   m_ObjectHideFlags: 0

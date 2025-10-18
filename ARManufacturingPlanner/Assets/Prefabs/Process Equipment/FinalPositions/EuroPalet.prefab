@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7507093836764657462}
   - component: {fileID: 2495205685603754564}
   - component: {fileID: 268408962976426466}
+  - component: {fileID: 3563107787435027341}
   m_Layer: 0
   m_Name: EuroPalet
   m_TagString: Untagged
@@ -207,6 +208,23 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &3563107787435027341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833154350296288523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 60
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 0}
 --- !u!1001 &2171187104610174081
 PrefabInstance:
   m_ObjectHideFlags: 0

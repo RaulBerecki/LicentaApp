@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 232.2582}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1335145895183179226
@@ -430,7 +430,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7002770314150570743}
         m_TargetAssemblyTypeName: AssetsPanelManager, Assembly-CSharp
-        m_MethodName: ViewMode
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1813,7 +1813,6 @@ GameObject:
   - component: {fileID: 1930115002583444928}
   - component: {fileID: 866544641768355495}
   - component: {fileID: 7002770314150570743}
-  - component: {fileID: 1441046354872346768}
   m_Layer: 5
   m_Name: AssetsPanel
   m_TagString: Untagged
@@ -1893,19 +1892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userInterfaceManager: {fileID: 0}
---- !u!114 &1441046354872346768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6510121547306154908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6711e35a1d6d40a43b78cc4cfe77bc4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 749233142442496250}
 --- !u!1 &6998109514492418595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2296,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1441046354872346768}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChatGPTManager, Assembly-CSharp
         m_MethodName: AskChatGPT
         m_Mode: 1

@@ -15,18 +15,18 @@ public class ObjectMenuScript : MonoBehaviour
     {
         idManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IdManager>();
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
-        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>())
+        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().riser!=null)
         {
-            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().riser.active)
+            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().riser.active)
                 addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER ON";
             else
                 addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
             addGripperButton.SetActive(true);
             addRiserButton.SetActive(true);
         }
-        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>())
+        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().stopper!=null)
         {
-            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>().stopper.active)
+            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().stopper.active)
                 addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER ON";
             else
                 addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER OFF";
@@ -75,12 +75,12 @@ public class ObjectMenuScript : MonoBehaviour
     {
         if(addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text=="RISER OFF")
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().RiserOn();
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().RiserOn();
             addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER ON";
         }
         else
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<RobotsController>().RiserOff();
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().RiserOff();
             addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
         }
     }
@@ -88,12 +88,12 @@ public class ObjectMenuScript : MonoBehaviour
     {
         if (addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text == "STOPPER OFF")
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>().ActivateStopper();
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().ActivateStopper();
             addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER ON";
         }
         else
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ConveyorController>().DeactivateStopper();
+            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().DeactivateStopper();
             addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER OFF";
         }
     }

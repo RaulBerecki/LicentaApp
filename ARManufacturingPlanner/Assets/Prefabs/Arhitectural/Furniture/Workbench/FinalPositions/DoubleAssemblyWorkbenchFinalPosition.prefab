@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: -1569729843864937724}
   - component: {fileID: 8405494375373395058}
   - component: {fileID: 6455018362770749100}
+  - component: {fileID: 8614498722435558457}
   m_Layer: 0
   m_Name: DoubleAssemblyWorkbenchFinalPosition
   m_TagString: Untagged
@@ -295,3 +296,20 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &8614498722435558457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285467380474679985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 31
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 0}

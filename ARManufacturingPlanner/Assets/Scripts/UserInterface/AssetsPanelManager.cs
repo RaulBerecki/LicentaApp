@@ -36,9 +36,9 @@ public class AssetsPanelManager : MonoBehaviour
         userInterfaceManager.Furniture();
         Destroy(this.gameObject);
     }
-    public void ViewMode()
+    public void BackButton()
     {
-        userInterfaceManager.assetPanelButton.SetActive(true);
+        userInterfaceManager.MenuPanel();
         Destroy(this.gameObject);
     }
 }

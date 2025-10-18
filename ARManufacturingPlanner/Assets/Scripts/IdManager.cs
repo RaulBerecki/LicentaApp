@@ -5,9 +5,9 @@ using TMPro;
 
 public class IdManager : MonoBehaviour
 {
-    public List<GameObject> gameObjects;
+    public List<GameObject> gameObjects, userInterfaceElements;
     public List<string> names;
-    public GameObject objectsPanel, instantiateButton, contentPanel, contentObjects, minimizeButton, objectSpawner;
+    public GameObject objectsPanel, instantiateButton, contentPanel, contentObjects, minimizeButton;
     public bool isDeleted, isMinimized;
     public int idChanged, objectsCreated;
     public RectTransform contentContainer;
@@ -59,14 +59,17 @@ public class IdManager : MonoBehaviour
     public void CreateElement()
     {
         objectsCreated++;
-        if(gameObjects.Count ==1) {
+        if (gameObjects.Count == 1)
+        {
             OpenObjectsPanel();
         }
-        GameObject obj=Instantiate(instantiateButton, contentPanel.transform, true);
-        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0 ,-60*gameObjects.Count-55*(gameObjects.Count-1));
+        GameObject obj = Instantiate(instantiateButton, contentPanel.transform, true);
+        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -60 * gameObjects.Count - 55 * (gameObjects.Count - 1));
         obj.GetComponent<MenuManager>().idManager = this.gameObject.GetComponent<IdManager>();
         obj.GetComponent<MenuManager>().id = gameObjects.Count;
-        names.Add("Object"+objectsCreated);
+        userInterfaceElements.Add(obj);
+        names.Add("Object" + objectsCreated);
+        gameObjects[gameObjects.Count - 1].GetComponent<ObjectUniversalScript>().name = names[names.Count - 1];
         contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
     }
     void idChange()
@@ -87,5 +90,34 @@ public class IdManager : MonoBehaviour
     public void ShowObjectsPanel()
     {
         objectsPanel.SetActive(true);
+    }
+    public void ResetSceneObjects()
+    {
+        foreach (var obj in gameObjects)
+        {
+            Destroy(obj);
+        }
+        gameObjects.Clear();
+        foreach(var obj in userInterfaceElements)
+            Destroy(obj);
+        userInterfaceElements.Clear();
+        objectsCreated = 0;
+        CloseObjectPanel();
+    }
+    public void RegisterObject(GameObject theObject)
+    {
+        objectsCreated++;
+        gameObjects.Add(theObject);
+        if (gameObjects.Count == 1)
+        {
+            OpenObjectsPanel();
+        }
+        GameObject obj = Instantiate(instantiateButton, contentPanel.transform, true);
+        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -60 * gameObjects.Count - 55 * (gameObjects.Count - 1));
+        obj.GetComponent<MenuManager>().idManager = this.gameObject.GetComponent<IdManager>();
+        obj.GetComponent<MenuManager>().id = gameObjects.Count;
+        userInterfaceElements.Add(obj);
+        names.Add(theObject.GetComponent<ObjectUniversalScript>().name);
+        contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
     }
 }

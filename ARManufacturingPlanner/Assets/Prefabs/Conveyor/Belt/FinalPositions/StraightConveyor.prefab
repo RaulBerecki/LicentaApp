@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1105931787807428228}
-  - component: {fileID: 6521876714421718078}
   - component: {fileID: -3895036108516286510}
   - component: {fileID: 3391335524180736051}
   - component: {fileID: -5019607005559592530}
+  - component: {fileID: -7625405291501515013}
   m_Layer: 0
   m_Name: StraightConveyor
   m_TagString: Untagged
@@ -37,19 +37,6 @@ Transform:
   - {fileID: 2508456969330984131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6521876714421718078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9098199691722663306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f9ddf4c98ca0d419a55125e8ec06d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopper: {fileID: 2991521542084746873}
 --- !u!114 &-3895036108516286510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +209,23 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &-7625405291501515013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098199691722663306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 59
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 2991521542084746873}
 --- !u!1001 &2685672804680917800
 PrefabInstance:
   m_ObjectHideFlags: 0

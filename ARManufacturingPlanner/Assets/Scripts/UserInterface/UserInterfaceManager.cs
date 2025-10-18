@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UserInterfaceManager : MonoBehaviour
 {
-    public GameObject UIparent,AssetsPanelPrefab,BackgroundPanelActive,objectMenuEditor,
+    public GameObject UIparent,MenuPanelPrefab,LoadScenesPanelPrefab,AssetsPanelPrefab,BackgroundPanelActive,objectMenuEditor,
         RobotsPanel,BuildingUtilitiesPanel,ProcessEquipmentPanel,FurniturePanel,
-        ABBPanel,placePanel,objectsPanel,assetPanelButton,gripperPanel;
+        ABBPanel,placePanel,objectsPanel,assetPanelButton,gripperPanel,saveInputPanel;
     public GameObject editPositionMenu, editRotationMenu, editName,objectToEdit;
     IdManager idManager;
     //PlacingVariables
@@ -31,6 +31,22 @@ public class UserInterfaceManager : MonoBehaviour
         GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
         child.transform.parent = UIparent.transform;
         assetPanelButton.SetActive(false);
+    }
+
+    public void MenuPanel()
+    {
+        GameObject child = Instantiate(MenuPanelPrefab, UIparent.transform);
+        child.transform.parent = UIparent.transform;
+    }
+    public void AssetsPanel()
+    {
+        GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
+        child.transform.parent = UIparent.transform;
+    }
+    public void LoadScenePanel()
+    {
+        GameObject child = Instantiate(LoadScenesPanelPrefab, UIparent.transform);
+        child.transform.parent = UIparent.transform;
     }
     public void Robots()
     {
@@ -107,5 +123,10 @@ public class UserInterfaceManager : MonoBehaviour
         GameObject child = Instantiate(gripperPanel, UIparent.transform);
         child.transform.parent = UIparent.transform;
         child.GetComponent<GripperPanelController>().robot = idManager.gameObjects[idManager.idObjectToEdit];
+    }
+    public void SaveScene()
+    {
+        GameObject child = Instantiate(saveInputPanel, UIparent.transform);
+        child.transform.parent = UIparent.transform;
     }
 }

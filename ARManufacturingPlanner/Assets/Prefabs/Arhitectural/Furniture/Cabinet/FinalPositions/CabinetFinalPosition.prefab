@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4455134058502939539}
   - component: {fileID: -4614510996132720856}
   - component: {fileID: 2789001537168534389}
+  - component: {fileID: -4365736299232523635}
   m_Layer: 0
   m_Name: CabinetFinalPosition
   m_TagString: Untagged
@@ -207,6 +208,23 @@ MonoBehaviour:
   m_Elasticity: 0.15
   m_EnableElasticBreakLimit: 0
   m_ElasticBreakLimit: 0.5
+--- !u!114 &-4365736299232523635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110928339045662851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 20
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 0}
 --- !u!1 &8305523588635885568
 GameObject:
   m_ObjectHideFlags: 0

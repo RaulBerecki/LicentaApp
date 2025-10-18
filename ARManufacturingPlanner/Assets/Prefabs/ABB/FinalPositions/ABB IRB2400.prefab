@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2136571370276201649}
-  - component: {fileID: -4945219564158676275}
   - component: {fileID: -1572398785151971487}
   - component: {fileID: 4313185308384329569}
   - component: {fileID: -5945624450982323959}
+  - component: {fileID: 6657990237257034457}
   m_Layer: 0
   m_Name: ABB IRB2400
   m_TagString: Untagged
@@ -38,22 +38,6 @@ Transform:
   - {fileID: 1111405763765245842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4945219564158676275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4906998664120875618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747175e33fef50b4bb93067a2ee7017a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grippers:
-  - {fileID: 2998222036475373261}
-  - {fileID: 4527616781135257469}
-  riser: {fileID: 299297011356454184}
 --- !u!114 &-1572398785151971487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +210,25 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &6657990237257034457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906998664120875618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 12
+  name: 
+  grippers:
+  - {fileID: 2998222036475373261}
+  - {fileID: 4527616781135257469}
+  riser: {fileID: 299297011356454184}
+  stopper: {fileID: 0}
 --- !u!1 &5813069622760337176
 GameObject:
   m_ObjectHideFlags: 0

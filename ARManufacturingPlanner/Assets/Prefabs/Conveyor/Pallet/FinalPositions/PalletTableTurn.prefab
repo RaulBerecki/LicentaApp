@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8110052449435853528}
   - component: {fileID: 1492746337602099704}
   - component: {fileID: 6861220513346691050}
+  - component: {fileID: -6760558939432592454}
   m_Layer: 0
   m_Name: PalletTableTurn
   m_TagString: Untagged
@@ -207,6 +208,23 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!114 &-6760558939432592454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567302191502035644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20f49385b72ea48bd180b98702456b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 52
+  name: 
+  grippers: []
+  riser: {fileID: 0}
+  stopper: {fileID: 0}
 --- !u!1001 &7961931049457144136
 PrefabInstance:
   m_ObjectHideFlags: 0

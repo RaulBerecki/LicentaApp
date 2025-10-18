@@ -19,15 +19,15 @@ public class GripperPanelController : MonoBehaviour
     }
     public void NoneGripper()
     {
-        robot.GetComponent<RobotsController>().NoneGripper();
+        robot.GetComponent<ObjectUniversalScript>().NoneGripper();
     }
     public void Gripper1()
     {
-        robot.GetComponent<RobotsController>().Gripper1();
+        robot.GetComponent<ObjectUniversalScript>().Gripper1();
     }
     public void Gripper2()
     {
-        robot.GetComponent<RobotsController>().Gripper2();
+        robot.GetComponent<ObjectUniversalScript>().Gripper2();
     }
     public void Finish()
     {

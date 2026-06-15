@@ -1,35 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using TMPro;
 
 public class ObjectMenuScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI positionCoord, rotationCoord;
-    public TextMeshProUGUI name;
+    // Renamed from "name" so it no longer shadows UnityEngine.Object.name.
+    [FormerlySerializedAs("name")]
+    public TextMeshProUGUI nameText;
     IdManager idManager;
     UserInterfaceManager userInterfaceManager;
     public GameObject addGripperButton,addRiserButton,addStopperButton;
+
     // Start is called before the first frame update
     void Start()
     {
         idManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IdManager>();
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
-        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().riser!=null)
+
+        ObjectUniversalScript ous = EditedObject();
+        if (ous.riser != null)
         {
-            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().riser.active)
-                addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER ON";
-            else
-                addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
+            SetButtonLabel(addRiserButton, ous.GetRiserStatus() ? "RISER ON" : "RISER OFF");
             addGripperButton.SetActive(true);
             addRiserButton.SetActive(true);
         }
-        if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().stopper!=null)
+        if (ous.stopper != null)
         {
-            if (idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().stopper.active)
-                addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER ON";
-            else
-                addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER OFF";
+            SetButtonLabel(addStopperButton, ous.GetStopperStatus() ? "STOPPER ON" : "STOPPER OFF");
             addStopperButton.SetActive(true);
         }
     }
@@ -37,10 +35,22 @@ public class ObjectMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        positionCoord.text = idManager.gameObjects[idManager.idObjectToEdit].transform.position.x.ToString() + "\n" + idManager.gameObjects[idManager.idObjectToEdit].transform.position.y.ToString() + "\n" + idManager.gameObjects[idManager.idObjectToEdit].transform.position.z.ToString();
-        rotationCoord.text = idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles.x.ToString() + "\n" + idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles.y.ToString() + "\n" + idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles.z.ToString();
-        name.text = idManager.names[idManager.idObjectToEdit];
+        Transform t = idManager.gameObjects[idManager.idObjectToEdit].transform;
+        positionCoord.text = t.position.x + "\n" + t.position.y + "\n" + t.position.z;
+        rotationCoord.text = t.eulerAngles.x + "\n" + t.eulerAngles.y + "\n" + t.eulerAngles.z;
+        nameText.text = idManager.names[idManager.idObjectToEdit];
     }
+
+    ObjectUniversalScript EditedObject()
+    {
+        return idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>();
+    }
+
+    static void SetButtonLabel(GameObject button, string text)
+    {
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
+    }
+
     public void EditPosition()
     {
         userInterfaceManager.ShowEditPosition();
@@ -73,28 +83,30 @@ public class ObjectMenuScript : MonoBehaviour
     }
     public void RiserClick()
     {
-        if(addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text=="RISER OFF")
+        ObjectUniversalScript ous = EditedObject();
+        if (!ous.GetRiserStatus())
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().RiserOn();
-            addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER ON";
+            ous.RiserOn();
+            SetButtonLabel(addRiserButton, "RISER ON");
         }
         else
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().RiserOff();
-            addRiserButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "RISER OFF";
+            ous.RiserOff();
+            SetButtonLabel(addRiserButton, "RISER OFF");
         }
     }
     public void StopperClick()
     {
-        if (addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text == "STOPPER OFF")
+        ObjectUniversalScript ous = EditedObject();
+        if (!ous.GetStopperStatus())
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().ActivateStopper();
-            addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER ON";
+            ous.ActivateStopper();
+            SetButtonLabel(addStopperButton, "STOPPER ON");
         }
         else
         {
-            idManager.gameObjects[idManager.idObjectToEdit].GetComponent<ObjectUniversalScript>().DeactivateStopper();
-            addStopperButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "STOPPER OFF";
+            ous.DeactivateStopper();
+            SetButtonLabel(addStopperButton, "STOPPER OFF");
         }
     }
 }

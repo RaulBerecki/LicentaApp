@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using TMPro;
 
@@ -13,24 +12,26 @@ public class EditObjectScript : MonoBehaviour
     public TMP_InputField nameEditorInput;
     public TMP_InputField[] changePositionInputs;
     public TMP_InputField[] changeRotationInputs;
+
     // Start is called before the first frame update
     void Start()
     {
         idManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IdManager>();
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
+        Transform target = EditedTransform();
         if (changePositionInputs.Length > 0)
         {
-            changePositionInputs[0].text = idManager.gameObjects[idManager.idObjectToEdit].transform.position.x.ToString();
-            changePositionInputs[1].text = idManager.gameObjects[idManager.idObjectToEdit].transform.position.y.ToString();
-            changePositionInputs[2].text = idManager.gameObjects[idManager.idObjectToEdit].transform.position.z.ToString();
-            currentPositionForReset = new Vector3(float.Parse(changePositionInputs[0].text), float.Parse(changePositionInputs[1].text), float.Parse(changePositionInputs[2].text));
+            changePositionInputs[0].text = Fmt(target.position.x);
+            changePositionInputs[1].text = Fmt(target.position.y);
+            changePositionInputs[2].text = Fmt(target.position.z);
+            currentPositionForReset = target.position;
         }
         if(changeRotationInputs.Length > 0)
         {
-            changeRotationInputs[0].text = idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles.x.ToString();
-            changeRotationInputs[1].text = idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles.y.ToString();
-            changeRotationInputs[2].text = idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles.z.ToString();
-            currentRotationForReset = new Vector3(float.Parse(changeRotationInputs[0].text), float.Parse(changeRotationInputs[1].text), float.Parse(changeRotationInputs[2].text));
+            changeRotationInputs[0].text = Fmt(target.eulerAngles.x);
+            changeRotationInputs[1].text = Fmt(target.eulerAngles.y);
+            changeRotationInputs[2].text = Fmt(target.eulerAngles.z);
+            currentRotationForReset = target.eulerAngles;
         }
         if(nameEditorInput)
             nameEditorInput.text = idManager.names[idManager.idObjectToEdit];
@@ -39,15 +40,52 @@ public class EditObjectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(changeRotationInputs.Length > 0)
-            idManager.gameObjects[idManager.idObjectToEdit].transform.eulerAngles = new Vector3(float.Parse(changeRotationInputs[0].text),
-                float.Parse(changeRotationInputs[1].text),
-                float.Parse(changeRotationInputs[2].text));
-        else if(changePositionInputs.Length >0)
-            idManager.gameObjects[idManager.idObjectToEdit].transform.position = new Vector3(float.Parse(changePositionInputs[0].text), 
-                float.Parse(changePositionInputs[1].text),
-                float.Parse(changePositionInputs[2].text));
+        Transform target = EditedTransform();
+        if (changeRotationInputs.Length > 0)
+        {
+            if (TryReadVector(changeRotationInputs, out Vector3 euler))
+                target.eulerAngles = euler;
+        }
+        else if (changePositionInputs.Length > 0)
+        {
+            if (TryReadVector(changePositionInputs, out Vector3 pos))
+                target.position = pos;
+        }
     }
+
+    Transform EditedTransform()
+    {
+        return idManager.gameObjects[idManager.idObjectToEdit].transform;
+    }
+
+    // Reads three input fields into a Vector3. Returns false (and leaves the object
+    // untouched) if any field is empty or mid-edit, so parsing never throws.
+    static bool TryReadVector(TMP_InputField[] inputs, out Vector3 result)
+    {
+        result = Vector3.zero;
+        if (!float.TryParse(inputs[0].text, NumberStyles.Float, CultureInfo.InvariantCulture, out float x)) return false;
+        if (!float.TryParse(inputs[1].text, NumberStyles.Float, CultureInfo.InvariantCulture, out float y)) return false;
+        if (!float.TryParse(inputs[2].text, NumberStyles.Float, CultureInfo.InvariantCulture, out float z)) return false;
+        result = new Vector3(x, y, z);
+        return true;
+    }
+
+    static string Fmt(float value)
+    {
+        return value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    static float ParseOrZero(string text)
+    {
+        float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out float value);
+        return value;
+    }
+
+    void Step(TMP_InputField[] inputs, int axis, float delta)
+    {
+        inputs[axis].text = Fmt(ParseOrZero(inputs[axis].text) + delta);
+    }
+
     public void ChangeName()
     {
         idManager.names[idManager.idObjectToEdit] = nameEditorInput.text;
@@ -57,89 +95,29 @@ public class EditObjectScript : MonoBehaviour
     {
         if (changePositionInputs.Length > 0)
         {
-            changePositionInputs[0].text = currentPositionForReset.x.ToString();
-            changePositionInputs[1].text = currentPositionForReset.y.ToString();
-            changePositionInputs[2].text = currentPositionForReset.z.ToString();
+            changePositionInputs[0].text = Fmt(currentPositionForReset.x);
+            changePositionInputs[1].text = Fmt(currentPositionForReset.y);
+            changePositionInputs[2].text = Fmt(currentPositionForReset.z);
         }
         else
         {
-            changeRotationInputs[0].text = currentRotationForReset.x.ToString();
-            changeRotationInputs[1].text = currentRotationForReset.y.ToString();
-            changeRotationInputs[2].text = currentRotationForReset.z.ToString();
+            changeRotationInputs[0].text = Fmt(currentRotationForReset.x);
+            changeRotationInputs[1].text = Fmt(currentRotationForReset.y);
+            changeRotationInputs[2].text = Fmt(currentRotationForReset.z);
         }
     }
-    public void IncreasePosX()
-    {
-        float currentValue = float.Parse(changePositionInputs[0].text);
-        currentValue += .1f;
-        changePositionInputs[0].text = currentValue.ToString();
-    }
-    public void DecreasePosX()
-    {
-        float currentValue = float.Parse(changePositionInputs[0].text);
-        currentValue -= .1f;
-        changePositionInputs[0].text = currentValue.ToString();
-    }
-    public void IncreasePosY()
-    {
-        float currentValue = float.Parse(changePositionInputs[1].text);
-        currentValue += .1f;
-        changePositionInputs[1].text = currentValue.ToString();
-    }
-    public void DecreasePosY()
-    {
-        float currentValue = float.Parse(changePositionInputs[1].text);
-        currentValue -= .1f;
-        changePositionInputs[1].text = currentValue.ToString();
-    }
-    public void IncreasePosZ()
-    {
-        float currentValue = float.Parse(changePositionInputs[2].text);
-        currentValue += .1f;
-        changePositionInputs[2].text = currentValue.ToString();
-    }
-    public void DecreasePosZ()
-    {
-        float currentValue = float.Parse(changePositionInputs[2].text);
-        currentValue -= .1f;
-        changePositionInputs[2].text = currentValue.ToString();
-    }
-    public void IncreaseRotX()
-    {
-        float currentValue = float.Parse(changeRotationInputs[0].text);
-        currentValue += 5;
-        changeRotationInputs[0].text = currentValue.ToString();
-    }
-    public void DecreaseRotX()
-    {
-        float currentValue = float.Parse(changeRotationInputs[0].text);
-        currentValue -= 5;
-        changeRotationInputs[0].text = currentValue.ToString();
-    }
-    public void IncreaseRotY()
-    {
-        float currentValue = float.Parse(changeRotationInputs[1].text);
-        currentValue += 5;
-        changeRotationInputs[1].text = currentValue.ToString();
-    }
-    public void DecreaseRotY()
-    {
-        float currentValue = float.Parse(changeRotationInputs[1].text);
-        currentValue -= 5;
-        changeRotationInputs[1].text = currentValue.ToString();
-    }
-    public void IncreaseRotZ()
-    {
-        float currentValue = float.Parse(changeRotationInputs[2].text);
-        currentValue += 5;
-        changeRotationInputs[2].text = currentValue.ToString();
-    }
-    public void DecreaseRotZ()
-    {
-        float currentValue = float.Parse(changeRotationInputs[2].text);
-        currentValue -= 5;
-        changeRotationInputs[2].text = currentValue.ToString();
-    }
+    public void IncreasePosX() { Step(changePositionInputs, 0, .1f); }
+    public void DecreasePosX() { Step(changePositionInputs, 0, -.1f); }
+    public void IncreasePosY() { Step(changePositionInputs, 1, .1f); }
+    public void DecreasePosY() { Step(changePositionInputs, 1, -.1f); }
+    public void IncreasePosZ() { Step(changePositionInputs, 2, .1f); }
+    public void DecreasePosZ() { Step(changePositionInputs, 2, -.1f); }
+    public void IncreaseRotX() { Step(changeRotationInputs, 0, 5); }
+    public void DecreaseRotX() { Step(changeRotationInputs, 0, -5); }
+    public void IncreaseRotY() { Step(changeRotationInputs, 1, 5); }
+    public void DecreaseRotY() { Step(changeRotationInputs, 1, -5); }
+    public void IncreaseRotZ() { Step(changeRotationInputs, 2, 5); }
+    public void DecreaseRotZ() { Step(changeRotationInputs, 2, -5); }
     public void Finish()
     {
         userInterfaceManager.BackgroundPanelActive.SetActive(true);

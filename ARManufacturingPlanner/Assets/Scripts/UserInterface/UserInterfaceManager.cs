@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UserInterfaceManager : MonoBehaviour
@@ -19,75 +17,36 @@ public class UserInterfaceManager : MonoBehaviour
         idManager = GetComponent<IdManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Instantiates a UI panel under UIparent and returns it.
+    GameObject OpenPanel(GameObject prefab)
     {
-        
+        return Instantiate(prefab, UIparent.transform);
     }
+
     //start planificare
     public void StartLayout()
     {
         //creare meniu de navighare pentru creare obiect
-        GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
-        child.transform.parent = UIparent.transform;
+        OpenPanel(AssetsPanelPrefab);
         assetPanelButton.SetActive(false);
     }
 
-    public void MenuPanel()
-    {
-        GameObject child = Instantiate(MenuPanelPrefab, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void AssetsPanel()
-    {
-        GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void LoadScenePanel()
-    {
-        GameObject child = Instantiate(LoadScenesPanelPrefab, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void Robots()
-    {
-        GameObject child = Instantiate(RobotsPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void BuildingUtilities()
-    {
-        GameObject child = Instantiate(BuildingUtilitiesPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void ProcessEquipment()
-    {
-        GameObject child = Instantiate(ProcessEquipmentPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void BackButtonRobotsPanel()
-    {
-        GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void ABB()
-    {
-        GameObject child = Instantiate(ABBPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void BackButtonABBPanel()
-    {
-        GameObject child = Instantiate(RobotsPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void Furniture()
-    {
-        GameObject child = Instantiate(FurniturePanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void BackButtonAllPanels()
-    {
-        GameObject child = Instantiate(AssetsPanelPrefab, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
+    public void MenuPanel() { OpenPanel(MenuPanelPrefab); }
+    public void AssetsPanel() { OpenPanel(AssetsPanelPrefab); }
+    public void LoadScenePanel() { OpenPanel(LoadScenesPanelPrefab); }
+    public void Robots() { OpenPanel(RobotsPanel); }
+    public void BuildingUtilities() { OpenPanel(BuildingUtilitiesPanel); }
+    public void ProcessEquipment() { OpenPanel(ProcessEquipmentPanel); }
+    public void BackButtonRobotsPanel() { OpenPanel(AssetsPanelPrefab); }
+    public void ABB() { OpenPanel(ABBPanel); }
+    public void BackButtonABBPanel() { OpenPanel(RobotsPanel); }
+    public void Furniture() { OpenPanel(FurniturePanel); }
+    public void BackButtonAllPanels() { OpenPanel(AssetsPanelPrefab); }
+    public void ShowEditPosition() { OpenPanel(editPositionMenu); }
+    public void ShowEditRotation() { OpenPanel(editRotationMenu); }
+    public void ShowEditName() { OpenPanel(editName); }
+    public void SaveScene() { OpenPanel(saveInputPanel); }
+
     public void FinishToPlace()
     {
         Destroy(placeIndicator.theObject);
@@ -97,36 +56,14 @@ public class UserInterfaceManager : MonoBehaviour
     }
     public void EditObject()
     {
-        GameObject child = Instantiate(objectMenuEditor, UIparent.transform);
-        child.transform.parent = UIparent.transform;
+        OpenPanel(objectMenuEditor);
         placePanel.SetActive(false);
         if(placeIndicator.indicator)
             placeIndicator.indicator.SetActive(false);
     }
-    public void ShowEditPosition()
-    {
-        GameObject child = Instantiate(editPositionMenu, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void ShowEditRotation()
-    {
-        GameObject child = Instantiate(editRotationMenu, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
-    public void ShowEditName()
-    {
-        GameObject child = Instantiate(editName, UIparent.transform);
-        child.transform.parent = UIparent.transform;
-    }
     public void ShowGripperPanel()
     {
-        GameObject child = Instantiate(gripperPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
+        GameObject child = OpenPanel(gripperPanel);
         child.GetComponent<GripperPanelController>().robot = idManager.gameObjects[idManager.idObjectToEdit];
-    }
-    public void SaveScene()
-    {
-        GameObject child = Instantiate(saveInputPanel, UIparent.transform);
-        child.transform.parent = UIparent.transform;
     }
 }

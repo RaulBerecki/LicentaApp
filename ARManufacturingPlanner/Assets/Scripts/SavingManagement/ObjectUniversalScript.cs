@@ -1,26 +1,22 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ObjectUniversalScript : MonoBehaviour
 {
     [Header("BasicObjects")]
     public int id;
-    public string name;
+    // Renamed from "name" so it no longer shadows UnityEngine.Object.name.
+    [FormerlySerializedAs("name")]
+    public string objectName;
+    [Header("WebModel")]
+    [Tooltip("Set for models downloaded at runtime from a URL. Empty for built-in prefabs.")]
+    public string webUrl;
     [Header("RobotController")]
     public GameObject[] grippers;
     public GameObject riser;
     [Header("ConveyorController")]
     public GameObject stopper;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     //Robot Functions!!!
     public void NoneGripper()
     {

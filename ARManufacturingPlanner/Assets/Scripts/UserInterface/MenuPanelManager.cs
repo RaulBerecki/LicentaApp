@@ -9,11 +9,6 @@ public class MenuPanelManager : MonoBehaviour
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void LoadScenes()
     {
         userInterfaceManager.LoadScenePanel();

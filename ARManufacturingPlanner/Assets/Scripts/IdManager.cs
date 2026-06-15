@@ -13,6 +13,7 @@ public class IdManager : MonoBehaviour
     public RectTransform contentContainer;
     public UserInterfaceManager userInterfaceManager;
     public int idObjectToEdit;
+    bool reindexScheduled;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +25,11 @@ public class IdManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDeleted)
+        // Schedule the reindex once per delete instead of every frame.
+        if (isDeleted && !reindexScheduled)
         {
-            Invoke("idChange", .2f);
+            reindexScheduled = true;
+            Invoke(nameof(idChange), .2f);
         }
     }
     public void OpenObjectsPanel()
@@ -39,20 +42,22 @@ public class IdManager : MonoBehaviour
     }
     public void Minimize()
     {
+        RectTransform panelRect = objectsPanel.GetComponent<RectTransform>();
+        RectTransform minimizeRect = minimizeButton.GetComponent<RectTransform>();
         if (!isMinimized)
         {
             contentObjects.SetActive(false);
-            objectsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(90, 90);
-            objectsPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(120, -60);
-            minimizeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-45, -45);
+            panelRect.sizeDelta = new Vector2(90, 90);
+            panelRect.anchoredPosition = new Vector2(120, -60);
+            minimizeRect.anchoredPosition = new Vector2(-45, -45);
             isMinimized = true;
         }
         else
         {
             contentObjects.SetActive(true);
-            objectsPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 500);
-            objectsPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, -250);
-            minimizeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50, -60);
+            panelRect.sizeDelta = new Vector2(1000, 500);
+            panelRect.anchoredPosition = new Vector2(500, -250);
+            minimizeRect.anchoredPosition = new Vector2(-50, -60);
             isMinimized = false;
         }
     }
@@ -63,19 +68,26 @@ public class IdManager : MonoBehaviour
         {
             OpenObjectsPanel();
         }
+        AddObjectButton();
+        names.Add("Object" + objectsCreated);
+        gameObjects[gameObjects.Count - 1].GetComponent<ObjectUniversalScript>().objectName = names[names.Count - 1];
+    }
+    // Instantiates a list-entry button for the most recently added object.
+    void AddObjectButton()
+    {
         GameObject obj = Instantiate(instantiateButton, contentPanel.transform, true);
         obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -60 * gameObjects.Count - 55 * (gameObjects.Count - 1));
-        obj.GetComponent<MenuManager>().idManager = this.gameObject.GetComponent<IdManager>();
-        obj.GetComponent<MenuManager>().id = gameObjects.Count;
+        MenuManager menu = obj.GetComponent<MenuManager>();
+        menu.idManager = this;
+        menu.id = gameObjects.Count;
         userInterfaceElements.Add(obj);
-        names.Add("Object" + objectsCreated);
-        gameObjects[gameObjects.Count - 1].GetComponent<ObjectUniversalScript>().name = names[names.Count - 1];
         contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
     }
     void idChange()
     {
         contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
         isDeleted = false;
+        reindexScheduled = false;
     }
     public void EditObjectMenu(int idObject)
     {
@@ -112,12 +124,7 @@ public class IdManager : MonoBehaviour
         {
             OpenObjectsPanel();
         }
-        GameObject obj = Instantiate(instantiateButton, contentPanel.transform, true);
-        obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -60 * gameObjects.Count - 55 * (gameObjects.Count - 1));
-        obj.GetComponent<MenuManager>().idManager = this.gameObject.GetComponent<IdManager>();
-        obj.GetComponent<MenuManager>().id = gameObjects.Count;
-        userInterfaceElements.Add(obj);
-        names.Add(theObject.GetComponent<ObjectUniversalScript>().name);
-        contentContainer.sizeDelta = new Vector2(0, gameObjects.Count * 115);
+        AddObjectButton();
+        names.Add(theObject.GetComponent<ObjectUniversalScript>().objectName);
     }
 }

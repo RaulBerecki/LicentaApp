@@ -11,11 +11,6 @@ public class SaveUIController : MonoBehaviour
         saveManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SaveManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void SaveFile()
     {
         if (inputFileName.text != "")

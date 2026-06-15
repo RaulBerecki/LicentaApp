@@ -17,11 +17,6 @@ public class UniversalObjectPanelController : MonoBehaviour
         placeIndicator = GameObject.FindGameObjectWithTag("PlaceIndicator").GetComponent<PlaceIndicator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void BackButton()
     {
         userInterfaceManager.BackButtonAllPanels();

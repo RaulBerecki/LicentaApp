@@ -12,11 +12,6 @@ public class GripperPanelController : MonoBehaviour
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void NoneGripper()
     {
         robot.GetComponent<ObjectUniversalScript>().NoneGripper();

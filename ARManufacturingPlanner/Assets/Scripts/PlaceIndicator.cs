@@ -17,9 +17,7 @@ public class PlaceIndicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        raycastManager = FindObjectOfType<ARRaycastManager>();
-        //indicator = transform.GetChild(0).gameObject;
-        //indicator.SetActive(false);
+        raycastManager = FindAnyObjectByType<ARRaycastManager>();
         isStarted = false;
     }
 
@@ -35,8 +33,7 @@ public class PlaceIndicator : MonoBehaviour
             if (!GameObject.FindGameObjectWithTag("StartPanel") && !isStarted) //verificare intersectie cu o suprafata pentru prima data
             {
                 //initializare interfata
-                GameObject child = Instantiate(startPanel, UIparent.transform);
-                child.transform.parent = UIparent.transform;
+                Instantiate(startPanel, UIparent.transform);
                 isStarted = true;
             }
         }
@@ -45,6 +42,16 @@ public class PlaceIndicator : MonoBehaviour
     {
         theObject = Instantiate(obj,transform.position,transform.rotation);
         theObject.transform.parent = this.transform;
+        indicator = theObject;
+    }
+    // Uses an already-instantiated GameObject (e.g. a runtime-built hologram) as the
+    // placement preview, parenting it to the indicator so it follows the detected ground.
+    public void SetObjectInstance(GameObject instance)
+    {
+        theObject = instance;
+        theObject.transform.SetParent(this.transform, false);
+        theObject.transform.localPosition = Vector3.zero;
+        theObject.transform.localRotation = Quaternion.identity;
         indicator = theObject;
     }
 }

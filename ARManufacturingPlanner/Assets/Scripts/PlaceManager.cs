@@ -12,17 +12,13 @@ public class PlaceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        placeIndicator = FindObjectOfType<PlaceIndicator>();
+        placeIndicator = FindAnyObjectByType<PlaceIndicator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void ClickToPlace()
     {
         newPlacedObject = Instantiate(objectToPlace, placeIndicator.transform.position, placeIndicator.transform.rotation);
+        newPlacedObject.SetActive(true); // web templates are kept inactive; no-op for normal prefabs
         if (idManager.gameObjects.Count == 0)
         {
             idManager.OpenObjectsPanel();

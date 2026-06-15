@@ -11,11 +11,6 @@ public class StartMenu : MonoBehaviour
         userInterfaceManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<UserInterfaceManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void StartLayout()
     {
         userInterfaceManager.StartLayout();
